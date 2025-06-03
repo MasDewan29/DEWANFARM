@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dewan Farm - Peternakan Domba Karawang</title>
+  <style>
+    /* Reset & base */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background: linear-gradient(135deg, #1b263b, #415a77);
+      color: #eee;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    a {
+      color: #82c0ff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 1rem 1rem;
+      background: #112240cc;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+    }
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 2px;
+    }
+    header p {
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 1.15rem;
+      color: #cbd5e1;
+    }
+
+    main {
+      flex: 1;
+      padding: 2rem 1rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      background: #1f2a44cc;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #2a4365aa;
+    }
+
+    .produk-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .produk {
+      background: #2c3a62;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 3px 8px #1b2540aa;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .produk img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-bottom: 3px solid #82c0ff;
+    }
+    .produk-content {
+      padding: 1rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .produk-content h3 {
+      margin-bottom: 0.5rem;
+      color: #a8dadc;
+    }
+    .produk-content p {
+      flex-grow: 1;
+      font-size: 0.95rem;
+      color: #d1d5db;
+      margin-bottom: 0.8rem;
+    }
+    .produk-info {
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: #81a1c1;
+    }
+    .produk-wa {
+      margin-top: auto;
+      text-align: center;
+    }
+    .produk-wa a {
+      background: #3b82f6;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-weight: 700;
+      display: inline-block;
+      color: white;
+      transition: background 0.3s ease;
+    }
+    .produk-wa a:hover {
+      background: #2563eb;
+    }
+
+    section.garansi, section.testimoni, section.form-section {
+      margin-top: 3rem;
+      background: #1a2b4c;
+      border-radius: 12px;
+      padding: 1.5rem 2rem;
+      box-shadow: 0 0 15px #274472aa;
+    }
+    section.garansi h2,
+    section.testimoni h2,
+    section.form-section h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+      color: #82c0ff;
+      letter-spacing: 1.5px;
+    }
+
+    /* Garansi */
+    .garansi-list {
+      list-style: disc;
+      padding-left: 1.5rem;
+      color: #cbd5e1;
+      font-size: 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+      gap: 0.5rem;
+    }
+
+    /* Testimoni */
+    .testimoni-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 1rem;
+    }
+    .testimoni-card {
+      background: #304b7b;
+      border-radius: 12px;
+      padding: 1rem;
+      width: 280px;
+      box-shadow: 0 0 10px #1c2f55aa;
+      color: #e0e7ff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .testimoni-card img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 0.6rem;
+      border: 2px solid #82c0ff;
+    }
+    .testimoni-name {
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      color: #b2c7ff;
+    }
+    .testimoni-stars {
+      margin-bottom: 0.6rem;
+      color: #facc15; /* yellow star */
+      font-size: 1.1rem;
+    }
+    .testimoni-text {
+      font-size: 0.9rem;
+      font-style: italic;
+      color: #d7dce3;
+    }
+
+    /* Form */
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+      color: #cbd5e1;
+    }
+    form label {
+      display: block;
+      margin-bottom: 0.3rem;
+      font-weight: 600;
+    }
+    form input, form select {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border-radius: 6px;
+      border: none;
+      font-size: 1rem;
+    }
+    form button {
+      background: #3b82f6;
+      border: none;
+      padding: 0.7rem 1.3rem;
+      color: white;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      width: 100%;
+    }
+    form button:hover {
+      background: #2563eb;
+    }
+
+    /* Footer medsos */
+    footer {
+      background: #112240cc;
+      text-align: center;
+      padding: 1rem 0.5rem;
+      margin-top: 3rem;
+      box-shadow: inset 0 2px 6px #274472aa;
+    }
+   .medsos-icons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px 0;
+    }
+
+    .medsos-icons a {
+      font-size: 30px;
+      color: white;
+      background-color: #1a2b4c;
+      padding: 15px;
+      border-radius: 50%;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .medsos-icons a:hover {
+      transform: scale(1.1);
+      background-color: #3b82f6;
+
+    }
+
+    /* Responsive */
+    @media (max-width: 650px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      .produk-list {
+        grid-template-columns: 1fr;
+      }
+      .testimoni-list {
+        justify-content: center;
+      }
+      .testimoni-card {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Dewan Farm</h1>
+  <p>
+    Peternakan Domba asal Karawang milik Dhany Dewanto Putra yang mengutamakan kualitas dan kuantitas dengan harga terjangkau.  
+    Kami menyediakan berbagai jenis domba unggulan seperti Biang Anak,  Penjantan, Domba Garut Dewasa, dan Anakan siap ternak.  
+    Dengan pengalaman dan perhatian khusus pada kesehatan serta genetik domba, Dewan Farm hadir untuk membantu Anda mengembangkan usaha peternakan dengan hasil optimal dan terpercaya,disini kita juga menjual untuk aqiqah ataupun qurban dengan harga ekonomis dan terjangkau  bisa cek di sini website ini.
+  </p>
+</header>
+
+<main>
+
+  <section class="produk-list">
+    <!-- Produk 1 -->
+    <div class="produk">
+      <div class="produk-content">
+          <img src="bikang.jpg" alt="Domba 1">
+        <h3>Biang garut </h3>
+        <p>Biang anak domba garut sehat, unggulan, dan siap berkembang. Cocok untuk peternak yang ingin mulai dengan kualitas terbaik.</p>
+        <p class="produk-info">Harga: Rp 2.000.000-3.500.000/ ekor</p>
+        <p class="produk-info">Stok: 155 ekor</p>
+        <p class="produk-info">Kualitas: Premium</p>
+        <p class="produk-info">⭐️⭐️⭐️⭐️⭐️ (4.9/5)</p>
+        <div class="produk-wa">
+          <a href="https://wa.me/6287721803753?text=Saya%20ingin%20memesan%20Biang%20Anak%20domba%20di%20Dewan%20Farm" target="_blank" rel="noopener">Chat via WhatsApp</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Produk 2 -->
+    <div class="produk">
+      <div class="produk-content">
+  <img src="pejantan1.jpg.jpeg" alt="Domba 2">
+        <h3>domba Penjantan biasa</h3>
+        <p>kami juga menjual penjantan yang siap untuk aqiqah atau buat pacek juga.</p>
+        <p class="produk-info">Harga: Rp3.000.000- 4.500.000 / ekor</p>
+        <p class="produk-info">Stok: 189 ekor</p>
+        <p class="produk-info">Kualitas: Super Premium</p>
+        <p class="produk-info">⭐️⭐️⭐️⭐️⭐️ (4.9/5)</p>
+        <div class="produk-wa">
+       <a href="https://wa.me/6287721803753?text=Saya%20ingin%20memesan%20Domba%20Garut%20Dewasa%20di%20Dewan%20Farm" target="_blank" rel="noopener">Chat via WhatsApp</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Produk 3 -->
+    <div class="produk">
+        <img src="dombagarut2.jpg.jpeg" alt="Domba 2">
+      <div class="produk-content">
+        <h3>Domba Garut Dewasa</h3>
+        <p>Domba Garut dewasa asli, siap ternak dan berkualitas tinggi, memiliki daya tahan dan produktivitas yang bagus.</p>
+        <p class="produk-info">Harga: Rp5.000.000-8.000.000 / ekor</p>
+        <p class="produk-info">Stok: 128 ekor</p>
+        <p class="produk-info">Kualitas: Premium</p>
+        <p class="produk-info">⭐️⭐️⭐️⭐️⭐️ (4.9/5)</p>
+        <div class="produk-wa">
+          <a href="https://wa.me/6287721803753?text=Saya%20ingin%20memesan%20Domba%20Garut%20Dewasa%20di%20Dewan%20Farm" target="_blank" rel="noopener">Chat via WhatsApp</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Produk 4 -->
+    <div class="produk">
+      
+      <div class="produk-content">
+       <img src="anakan1.jpg.jpeg" alt="Domba 2">
+        <h3>Bahan</h3>
+        <p>Anakan domba sehat dan aktif, hasil pemuliaan unggulan siap untuk dikembangbiakkan.</p>
+        <p class="produk-info">Harga: Rp900.000-1.500.000 / ekor</p>
+        <p class="produk-info">Stok: 280 ekor</p>
+        <p class="produk-info">Kualitas: Premium</p>
+        <p class="produk-info">⭐️⭐️⭐️⭐️⭐️ (4.9/5)</p>
+        <div class="produk-wa">
+          <a href="https://wa.me/6287721803753?text=Saya%20ingin%20memesan%20Anakan%20Domba%20di%20Dewan%20Farm" target="_blank" rel="noopener">Chat via WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="garansi">
+  <h2>10 Alasan Pilih Dewan Farm</h2>
+  <ul class="garansi-list">
+    <li>Domba sehat dan bersertifikat</li>
+    <li>Harga bersaing dan transparan</li>
+    <li>Tersedia untuk Qurban dan Aqiqah</li>
+    <li>Kualitas Premium, Super, dan Ekonomis</li>
+    <li>Pengiriman cepat dan aman</li>
+    <li>Lokasi strategis di Karawang</li>
+    <li>Konsultasi gratis sebelum beli</li>
+    <li>Garansi tukar jika tidak sehat*</li>
+    <li>Pembayaran lengkap: Cash, Transfer, QRIS</li>
+    <li>Sudah dipercaya puluhan pelanggan</li>
+  </ul>
+</section>
+
+
+  <!-- Garansi -->
+  <section class="garansi">
+    <h2>Garansi Dewan Farm</h2>
+    <ul class="garansi-list">
+      <li>Domba sehat saat pengiriman</li>
+      <li>Penggantian jika sakit dalam 10 hari</li>
+      <li>Gratis konsultasi peternakan</li>
+      <li>Garansi genetik unggul</li>
+      <li>Proses pembelian mudah dan cepat</li>
+      <li>Gratis pengiriman untuk pembelian 20 ekor ke atas untuk di luar karawang</li>
+      <li>Garansi uang kembali jika tidak puas dengan barang kami</li>
+      <li>Dukungan purna jual selama masa ternak</li>
+      <li>Kualitas sesuai deskripsi</li>
+      <li>Pelayanan ramah dan profesional</li>
+    </ul>
+  </section>
+
+
+  <section class="garansi">
+  <h2>Kelebihan Dewan Farm</h2>
+  <ul class="garansi-list">
+    <li>Domba langsung dari peternak, bukan tengkulak</li>
+    <li>Dokumentasi domba sebelum dikirim</li>
+    <li>Bisa pilih domba via video call</li>
+    <li>Garansi sehat 7 hari</li>
+  </ul>
+</section>
+
+
+
+  <!-- Testimoni -->
+  <section class="testimoni">
+    <h2>Testimoni Pembeli</h2>
+    <div class="testimoni-list">
+      <!-- Contoh testimoni -->
+      <div class="testimoni-card">
+      
+        <div class="testimoni-name">Andi</div>
+        <div class="testimoni-stars">★★★★★</div>
+        <div class="testimoni-text">Domba yang saya beli sangat sehat dan kualitasnya bagus. Sangat puas!</div>
+      </div>
+      <div class="testimoni-card">
+        
+        <div class="testimoni-name">Sari</div>
+        <div class="testimoni-stars">★★★★☆</div>
+        <div class="testimoni-text">Pengiriman cepat dan domba sesuai deskripsi. Recommended!</div>
+      </div>
+      <div class="testimoni-card">
+        
+        <div class="testimoni-name">Budi</div>
+        <div class="testimoni-stars">★★★★★</div>
+        <div class="testimoni-text">Pelayanan ramah dan domba sehat. Terima kasih Dewan Farm!</div>
+      </div>
+      <div class="testimoni-card">
+        <div class="testimoni-name">Lina</div>
+        <div class="testimoni-stars">★★★★☆</div>
+        <div class="testimoni-text">Kualitas domba terjamin dan harga bersahabat.</div>
+      </div>
+      <div class="testimoni-card">
+        
+        <div class="testimoni-name">Eko</div>
+        <div class="testimoni-stars">★★★★★</div>
+        <div class="testimoni-text">Domba sehat, stok selalu tersedia. Puas banget!</div>
+      </div>
+      <div class="test
+  <!-- Testimoni -->
+  <section class="testimoni">
+    <h2>Apa Kata Mereka?</h2>
+    <div class="testimoni-list">
+      <div class="testimoni-card">
+        
+        <div class="testimoni-name">Budi Santoso</div>
+        <div class="testimoni-stars">★★★★★</div>
+        <div class="testimoni-text">Domba yang saya beli dari Dewan Farm sangat sehat dan cepat berkembang. Sangat puas!</div>
+      </div>
+      <div class="testimoni-card">
+        
+        <div class="testimoni-name">Siti Aminah</div>
+        <div class="testimoni-stars">★★★★☆</div>
+        <div class="testimoni-text">Pelayanan ramah dan pengiriman tepat waktu. Dombanya juga berkualitas tinggi.</div>
+      </div>
+      <div class="testimoni-card">
+        
+        <div class="testimoni-name">Ahmad Fauzi</div>
+        <div class="testimoni-stars">★★★★★</div>
+        <div class="testimoni-text">Harga sesuai dengan kualitas. Saya rekomendasikan Dewan Farm untuk peternak baru.</div>
+      </div>
+      <div class="testimoni-card">
+        
+        <div class="testimoni-name">Ratna Dewi</div>
+        <div class="testimoni-stars">★★★★★</div>
+        <div class="testimoni-text">Domba anakan yang saya beli tumbuh dengan baik. Terima kasih Dewan Farm!</div>
+      </div>
+      <div class="testimoni-card">
+        <div class="testimoni-name">Joko Widodo</div>
+        <div class="testimoni-stars">★★★★☆</div>
+        <div class="testimoni-text">Gratis ongkir sangat membantu. Pelayanan dan kualitas nomor satu.</div>
+      </div>
+      <div class="testimoni-card">
+        <div class="testimoni-name">Lia Marlina</div>
+        <div class="testimoni-stars">★★★★★</div>
+        <div class="testimoni-text">Dewan Farm sangat profesional. Saya puas dengan hasil ternak saya.</div>
+      </div>
+      <div class="testimoni-card">
+        
+        <div class="testimoni-name">Agus Santoso</div>
+        <div class="testimoni-stars">★★★★★</div>
+        <div class="testimoni-text">Domba sehat, pengiriman cepat, harga masuk akal. Recommended!</div>
+      </div>
+      <div class="testimoni-card">
+        
+        <div class="testimoni-name">Maya Sari</div>
+        <div class="testimoni-stars">★★★★☆</div>
+        <div class="testimoni-text">Pengalaman belanja yang menyenangkan. Kontak WA cepat dibalas.</div>
+      </div>
+      <div class="testimoni-card">
+        
+        <div class="testimoni-name">Rizal Hakim</div>
+        <div class="testimoni-stars">★★★★★</div>
+        <div class="testimoni-text">Anakan domba berkualitas yang sangat cepat tumbuh. Terima kasih Dewan Farm!</div>
+      </div>
+      <div class="testimoni-card">
+        
+        <div class="testimoni-name">Dewi Lestari</div>
+        <div class="testimoni-stars">★★★★★</div>
+        <div class="testimoni-text">Sangat puas dengan pelayanan dan kualitas domba di Dewan Farm.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="form-section">
+  <h2>Formulir Pemesanan Domba</h2>
+  <form onsubmit="return sendWA();">
+    <label for="nama">Nama Pemesan:</label>
+    <input type="text" id="nama" required>
+
+    <label for="jenis">Jenis Domba:</label>
+    <select id="jenis">
+      <option value="Biang Garut">Biang Garut</option>
+      <option value="Anakan">Anakan</option>
+      <option value="Pejantan">Pejantan</option>
+      <option value="domba garut">domba garut</option>
+    </select>
+
+    <label for="jumlah">Jumlah:</label>
+    <input type="number" id="jumlah" required>
+
+    <label for="alamat">Alamat Lengkap:</label>
+    <input type="text" id="alamat" required>
+
+    <button type="submit">Pesan via WhatsApp</button>
+  </form>
+
+</main>
+
+<footer>
+<div class="medsos-icons">
+  <a href="https://instagram.com/dhany_d.p" target="_blank" title="Instagram Dewan Farm">
+    <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram" style="width: 40px; height: 40px;">
+  </a>
+  <a href="https://wa.me/6287721803753" target="_blank" class="wa-float" title="Chat via WhatsApp">
+  <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" width="50" height="50">
+</a>
+
+</div>
+
+ 
+  <p>&copy; 2025 Dewan Farm. Semua hak dilindungi.</p>
+  <footer class="footer">
+  <p>Website ini dibuat oleh <strong>Dhany Dewanto Putra</strong>.</p>
+</footer>
+
+</footer>
+
+<script>
+  // Submit form via WhatsApp link
+  const form = document.getElementById('orderForm');
+  form.addEventListener('submit', function(event){
+    event.preventDefault();
+
+    const nama = form.nama.value.trim();
+    const hp = form.hp.value.trim();
+    const produk = form.produk.value;
+    const jumlah = form.jumlah.value;
+    const metode = form.metode.value;
+
+    if (!nama || !hp || !produk || !jumlah || !metode) {
+      alert('Mohon isi semua data dengan lengkap!');
+      return;
+    }
+
+    // Format pesan WhatsApp
+    const pesan = encodeURIComponent(
+      `Permisi bos Dewan Farm,%0ASaya ingin memesan produk anda apakahmasih ready?:%0A- Nama: ${nama}%0A- Nomor WA: ${hp}%0A- Produk: ${produk}%0A- Jumlah: ${jumlah} ekor%0A- Metode Pembayaran: ${metode}%0A%0AMohon info lebih lanjut. Terima kasih!`
+    );
+
+    // Nomor WA Dewan Farm (ubah sesuai nomor asli)
+    const waNomor = "6287721803753";
+
+    const waUrl = `https://wa.me/${waNomor}?text=${pesan}`;
+
+    window.open(waUrl, '_blank');
+  });
+</script>
+
+</body>
+</html>  
